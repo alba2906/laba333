@@ -2,17 +2,17 @@
 {
     public enum TokenType
     {
-        UnsignedInteger,   // 1
-        Identifier,        // 2
-        KeywordNew,        // 3
-        KeywordString,     // 4
-        KeywordInt,        // 5
-        StringLiteral,     // 6
-        LessThan,          // 7
-        GreaterThan,       // 8
-        Comma,             // 9
-        Assign,            // 10
-        Whitespace,        // 11
+        KeywordNew,        // 1
+        KeywordInt,        // 2
+        KeywordString,     // 3
+        Identifier,        // 4
+        Whitespace,        // 5
+        Assign,            // 6
+        StringLiteral,     // 7
+        UnsignedInteger,   // 8
+        LessThan,          // 9
+        GreaterThan,       // 10
+        Comma,             // 11
         OpenBrace,         // 12
         CloseBrace,        // 13
         Semicolon,         // 14

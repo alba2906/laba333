@@ -19,43 +19,43 @@ namespace Laba1.Core
             {
                 char current = text[i];
 
-                // Состояние 1: идентификатор / ключевое слово
+                // Идентификатор / ключевое слово
                 if (IsIdentifierStart(current))
                 {
                     ReadIdentifierOrKeyword(text, ref i, ref line, ref column, result);
                     continue;
                 }
 
-                // Состояние 2: пробельные символы
+                // Пробельные символы
                 if (IsWhitespace(current))
                 {
                     ReadWhitespace(text, ref i, ref line, ref column, result);
                     continue;
                 }
 
-                // Состояние 3: оператор =
+                // Оператор присваивания =
                 if (current == '=')
                 {
-                    result.Tokens.Add(CreateSingleCharToken(10, TokenType.Assign, "=", line, column));
+                    result.Tokens.Add(CreateSingleCharToken(6, TokenType.Assign, "=", line, column));
                     Advance(current, ref i, ref line, ref column);
                     continue;
                 }
 
-                // Состояния 4-5: строковый литерал
+                // Строковый литерал
                 if (current == '"')
                 {
                     ReadStringLiteral(text, ref i, ref line, ref column, result);
                     continue;
                 }
 
-                // Состояние 6: число
+                // Число
                 if (char.IsDigit(current))
                 {
                     ReadUnsignedInteger(text, ref i, ref line, ref column, result);
                     continue;
                 }
 
-                // Состояния 7-12: одиночные символы
+                // Одиночные символы
                 if (TryReadSingleSymbol(current, line, column, out Token? token))
                 {
                     result.Tokens.Add(token);
@@ -63,7 +63,7 @@ namespace Laba1.Core
                     continue;
                 }
 
-                // ERROR
+                // Ошибка
                 result.Errors.Add(new LexicalError
                 {
                     Message = $"Недопустимый символ '{current}'.",
@@ -102,22 +102,22 @@ namespace Laba1.Core
             switch (lexeme)
             {
                 case "new":
-                    code = 3;
+                    code = 1;
                     type = TokenType.KeywordNew;
                     break;
 
-                case "string":
-                    code = 4;
-                    type = TokenType.KeywordString;
-                    break;
-
                 case "int":
-                    code = 5;
+                    code = 2;
                     type = TokenType.KeywordInt;
                     break;
 
+                case "string":
+                    code = 3;
+                    type = TokenType.KeywordString;
+                    break;
+
                 default:
-                    code = 2;
+                    code = 4;
                     type = TokenType.Identifier;
                     break;
             }
@@ -154,7 +154,7 @@ namespace Laba1.Core
 
             result.Tokens.Add(new Token
             {
-                Code = 11,
+                Code = 5,
                 Type = TokenType.Whitespace,
                 Lexeme = EscapeWhitespace(sb.ToString()),
                 Line = startLine,
@@ -217,7 +217,7 @@ namespace Laba1.Core
 
             result.Tokens.Add(new Token
             {
-                Code = 6,
+                Code = 7,
                 Type = TokenType.StringLiteral,
                 Lexeme = sb.ToString(),
                 Line = startLine,
@@ -245,7 +245,7 @@ namespace Laba1.Core
 
             result.Tokens.Add(new Token
             {
-                Code = 1,
+                Code = 8,
                 Type = TokenType.UnsignedInteger,
                 Lexeme = sb.ToString(),
                 Line = startLine,
@@ -261,15 +261,15 @@ namespace Laba1.Core
             switch (current)
             {
                 case '<':
-                    token = CreateSingleCharToken(7, TokenType.LessThan, "<", line, column);
+                    token = CreateSingleCharToken(9, TokenType.LessThan, "<", line, column);
                     return true;
 
                 case '>':
-                    token = CreateSingleCharToken(8, TokenType.GreaterThan, ">", line, column);
+                    token = CreateSingleCharToken(10, TokenType.GreaterThan, ">", line, column);
                     return true;
 
                 case ',':
-                    token = CreateSingleCharToken(9, TokenType.Comma, ",", line, column);
+                    token = CreateSingleCharToken(11, TokenType.Comma, ",", line, column);
                     return true;
 
                 case '{':
@@ -281,7 +281,7 @@ namespace Laba1.Core
                     return true;
 
                 case ';':
-                    token = CreateSingleCharToken(16, TokenType.Semicolon, ";", line, column);
+                    token = CreateSingleCharToken(14, TokenType.Semicolon, ";", line, column);
                     return true;
 
                 default:

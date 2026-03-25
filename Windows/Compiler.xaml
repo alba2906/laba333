@@ -155,40 +155,44 @@
                           ShowsPreview="True"
                           ResizeBehavior="PreviousAndNext"/>
 
-            <GroupBox Grid.Row="2" Header="Результаты лексического анализа" Margin="0,2,0,0">
+            <GroupBox Grid.Row="2" Header="Результаты анализа" Margin="0,2,0,0">
                 <DataGrid
-                    x:Name="OutputDataGrid"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    CanUserDeleteRows="False"
-                    IsReadOnly="True"
-                    Background="White"
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    RowHeaderWidth="0"
-                    GridLinesVisibility="Horizontal"
-                    AlternatingRowBackground="NavajoWhite"
-                    VerticalScrollBarVisibility="Auto"
-                    HorizontalScrollBarVisibility="Auto"
-                    SelectionMode="Single"
-                    SelectionChanged="OutputDataGrid_SelectionChanged">
+        x:Name="OutputDataGrid"
+        AutoGenerateColumns="False"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        Background="White"
+        BorderBrush="Gray"
+        BorderThickness="1"
+        RowHeaderWidth="0"
+        GridLinesVisibility="Horizontal"
+        AlternatingRowBackground="NavajoWhite"
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Auto"
+        SelectionMode="Single"
+        SelectionChanged="OutputDataGrid_SelectionChanged">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Условный код"
-                                            Binding="{Binding Code}"
-                                            Width="110"/>
+                                Binding="{Binding Code}"
+                                Width="110"/>
 
-                        <DataGridTextColumn Header="Тип лексемы"
-                                            Binding="{Binding TypeName}"
-                                            Width="220"/>
+                        <DataGridTextColumn Header="Тип"
+                                Binding="{Binding TypeName}"
+                                Width="180"/>
 
-                        <DataGridTextColumn Header="Лексема"
-                                            Binding="{Binding Lexeme}"
-                                            Width="*"/>
+                        <DataGridTextColumn Header="Неверный фрагмент"
+                                Binding="{Binding Lexeme}"
+                                Width="*"/>
 
                         <DataGridTextColumn Header="Местоположение"
-                                            Binding="{Binding Location}"
-                                            Width="150"/>
+                                Binding="{Binding Location}"
+                                Width="150"/>
+
+                        <DataGridTextColumn Header="Описание"
+                                Binding="{Binding Description}"
+                                Width="260"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </GroupBox>
