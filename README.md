@@ -21,7 +21,7 @@
 ## Вариант задания
 **Вариант:** объявление ассоциативного массива `Dictionary<int, string>` с инициализацией.
 
-### Утверждённая грамматика
+### Грамматика
 ```text
 Dictionary Declaration = "Dictionary", "<", "int", ",", "string", ">",
                          Dictionary Identifier,
