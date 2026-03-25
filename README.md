@@ -80,34 +80,6 @@ Dictionary<int, string> data_1 = new Dictionary<int, string>{ {10,"ten"}; {20,"t
 - `ParseDictionaryElement()` — разбор отдельного элемента словаря;
 - вспомогательные процедуры проверки идентификатора, числа, строки и разделителей.
 
-### Схема метода анализа (список процедур)
-```text
-DictionaryDeclaration
-        ↓
-DictionaryType
-        ↓
-DictionaryIdentifier
-        ↓
-Assign
-        ↓
-NewDictionary
-        ↓
-InitStart
-        ↓
-DictionaryElement
-        ↓
-ElementList
-        ↓
-InitEnd
-        ↓
-End
-
-ElementList → ";" → DictionaryElement → ElementList
-          ↘
-            InitEnd
-
-DictionaryElement → "{" → Number → "," → String → "}"
-```
 
 ## Диагностика и нейтрализация синтаксических ошибок
 При обнаружении ошибки анализатор формирует запись со следующими полями:
