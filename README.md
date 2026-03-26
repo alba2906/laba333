@@ -101,14 +101,16 @@ Dictionary<int, string> data_1 = new Dictionary<int, string>{ {10,"ten"}, {20,"t
 ```csharp
 Dictionary<int, string> dict = new Dictionary<int, string>{ {1,"one"}, {2,"two"} };
 ```
-**Результат:** <img width="881" height="637" alt="image" src="https://github.com/user-attachments/assets/93d540a8-5277-4565-ae80-2caabe1ee199" />
+**Результат:**
+<img width="881" height="637" alt="image" src="https://github.com/user-attachments/assets/93d540a8-5277-4565-ae80-2caabe1ee199" />
 
 
 ### Одна ошибка
 ```csharp
 Dictionary<int, string> = new Dictionary<int, string>{ {1,"one"} };
 ```
-**Результат:** <img width="879" height="644" alt="image" src="https://github.com/user-attachments/assets/115c5762-6787-4a6f-8b17-e143ec970c59" />
+**Результат:**
+<img width="879" height="644" alt="image" src="https://github.com/user-attachments/assets/115c5762-6787-4a6f-8b17-e143ec970c59" />
 
 
 ### Несколько ошибок
@@ -123,14 +125,16 @@ Dictionary<int, string> dict = new Dictionary<int, string>{ {,"one"}; {2,two} };
 ```text
 
 ```
-**Результат:** <img width="881" height="639" alt="image" src="https://github.com/user-attachments/assets/52307951-fb25-4e61-ad4c-c8797b0a9ae3" />
+**Результат:**
+<img width="881" height="639" alt="image" src="https://github.com/user-attachments/assets/52307951-fb25-4e61-ad4c-c8797b0a9ae3" />
 
 
 ### Без первого ключевого слова
 ```csharp
 int dict = new Dictionary<int, string>{ {1,"one"} };
 ```
-**Результат:**<img width="874" height="636" alt="image" src="https://github.com/user-attachments/assets/473d2bbe-3a36-49db-8140-175cacb9d602" />
+**Результат:**
+<img width="874" height="636" alt="image" src="https://github.com/user-attachments/assets/473d2bbe-3a36-49db-8140-175cacb9d602" />
 
 
 ## Инструкция по сборке и запуску
