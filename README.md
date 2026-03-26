@@ -99,35 +99,39 @@ Dictionary<int, string> data_1 = new Dictionary<int, string>{ {10,"ten"}, {20,"t
 ## Тестовые примеры
 ### Корректная строка
 ```csharp
-Dictionary<int, string> dict = new Dictionary<int, string>{ {1,"one"}; {2,"two"} };
+Dictionary<int, string> dict = new Dictionary<int, string>{ {1,"one"}, {2,"two"} };
 ```
-**Результат:** ошибок не обнаружено.
+**Результат:** <img width="881" height="637" alt="image" src="https://github.com/user-attachments/assets/93d540a8-5277-4565-ae80-2caabe1ee199" />
+
 
 ### Одна ошибка
 ```csharp
 Dictionary<int, string> = new Dictionary<int, string>{ {1,"one"} };
 ```
-**Результат:** ошибка — ожидался идентификатор словаря.
+**Результат:** <img width="879" height="644" alt="image" src="https://github.com/user-attachments/assets/115c5762-6787-4a6f-8b17-e143ec970c59" />
+
 
 ### Несколько ошибок
 ```csharp
 Dictionary<int, string> dict = new Dictionary<int, string>{ {,"one"}; {2,two} };
 ```
 **Результат:**
-- ожидалось целое число;
-- ожидалась строка в двойных кавычках.
+<img width="878" height="638" alt="image" src="https://github.com/user-attachments/assets/af6bb3d0-de76-4006-8d52-8e7170cdb7d2" />
+
 
 ### Пустая строка
 ```text
 
 ```
-**Результат:** ошибка — пустой ввод.
+**Результат:** <img width="881" height="639" alt="image" src="https://github.com/user-attachments/assets/52307951-fb25-4e61-ad4c-c8797b0a9ae3" />
+
 
 ### Без первого ключевого слова
 ```csharp
 int dict = new Dictionary<int, string>{ {1,"one"} };
 ```
-**Результат:** ошибка — ожидалось слово `Dictionary`.
+**Результат:**<img width="874" height="636" alt="image" src="https://github.com/user-attachments/assets/473d2bbe-3a36-49db-8140-175cacb9d602" />
+
 
 ## Инструкция по сборке и запуску
 1. Открыть решение `Laba1.sln` в Visual Studio 2022.
