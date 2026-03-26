@@ -57,11 +57,11 @@ Dictionary<int, string> dict = new Dictionary<int, string>{ {1,"one"} };
 ```
 
 ```csharp
-Dictionary<int, string> my_dict1 = new Dictionary<int, string>{ {1,"one"}; {2,"two"} };
+Dictionary<int, string> my_dict1 = new Dictionary<int, string>{ {1,"one"}, {2,"two"} };
 ```
 
 ```csharp
-Dictionary<int, string> data_1 = new Dictionary<int, string>{ {10,"ten"}; {20,"twenty"}; {30,"thirty"} };
+Dictionary<int, string> data_1 = new Dictionary<int, string>{ {10,"ten"}, {20,"twenty"}, {30,"thirty"} };
 ```
 
 ### Допустимые лексемы
