@@ -34,6 +34,7 @@ Dictionary<int, string> My_dict1 = new Dictionary<int, string> {
 Определим грамматику объявления словаря с инициализацией на языке C# в нотации Хомского с продукциями P:
 
 
+```text
 1) <DictionaryDeclaration> -> Dictionary < <int> , <string> > <DictionaryIdentifier> = new Dictionary < <int> , <string> > { <DictionaryElement> <DictionaryElementTail> } ;
 
 2) <DictionaryElementTail> -> , <DictionaryElement> <DictionaryElementTail> | ε
@@ -55,7 +56,7 @@ Dictionary<int, string> My_dict1 = new Dictionary<int, string> {
 ‒ letter -> a | b | ... | z | A | B | ... | Z  
 ‒ digit -> 0 | 1 | ... | 9  
 ‒ symbol -> letter | digit | _ | пробел | . | , | : | ; | ! | ? | - | +
-
+```
 Следуя введённому формальному определению грамматики, представим её составляющими:
 
 ‒ Z = <DictionaryDeclaration>
