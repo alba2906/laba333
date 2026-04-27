@@ -31,123 +31,73 @@ Dictionary<int, string> My_dict1 = new Dictionary<int, string> {
     { 3, "three" }
 };
 ```
-### Грамматика
-```text
-Dictionary Declaration = "Dictionary", "<", "int", ",", "string", ">",
-                         Dictionary Identifier,
-                         "=",
-                         "new", "Dictionary", "<", "int", ",", "string", ">",
-                         "{",
-                         Dictionary Element,
-                         {",", Dictionary Element},
-                         "}", ";";
+Определим грамматику объявления словаря с инициализацией на языке C# в нотации Хомского с продукциями P:
 
-Dictionary Element = "{", Number, ",", String, "}";
-Dictionary Identifier = letter, {letter | digit | "_"};
-Number = digit, {digit};
-String = "\"", {symbol}, "\"";
-```
----
-## Полное определение грамматики
 
-Грамматика задаётся четвёркой:
+1) <DictionaryDeclaration> -> Dictionary < <int> , <string> > <DictionaryIdentifier> = new Dictionary < <int> , <string> > { <DictionaryElement> <DictionaryElementTail> } ;
 
-G = (V_T, V_N, P, S)
+2) <DictionaryElementTail> -> , <DictionaryElement> <DictionaryElementTail> | ε
 
-где:
+3) <DictionaryElement> -> { <Number> , <String> }
 
-- V_T — множество терминалов  
-- V_N — множество нетерминалов  
-- P — множество правил  
-- S — начальный символ  
+4) <DictionaryIdentifier> -> letter <DictionaryIdentifierTail>
 
-### Терминалы
+5) <DictionaryIdentifierTail> -> letter <DictionaryIdentifierTail> | digit <DictionaryIdentifierTail> | _ <DictionaryIdentifierTail> | ε
 
-Dictionary, int, string, new, <, >, ,, =, {, }, ;, ", letter, digit, symbol
+6) <Number> -> digit <NumberTail>
 
-### Нетерминалы
+7) <NumberTail> -> digit <NumberTail> | ε
 
-DictionaryDeclaration  
-DictionaryElement  
-DictionaryIdentifier  
-Number  
-String  
-letter  
-digit  
-symbol  
+8) <String> -> " <StringBody> "
 
-### Начальный символ
+9) <StringBody> -> symbol <StringBody> | ε
 
-S = DictionaryDeclaration
+‒ letter -> a | b | ... | z | A | B | ... | Z  
+‒ digit -> 0 | 1 | ... | 9  
+‒ symbol -> letter | digit | _ | пробел | . | , | : | ; | ! | ? | - | +
 
-### Продукции
+Следуя введённому формальному определению грамматики, представим её составляющими:
 
-DictionaryDeclaration =
-    "Dictionary", "<", "int", ",", "string", ">",
-    DictionaryIdentifier,
-    "=",
-    "new", "Dictionary", "<", "int", ",", "string", ">",
-    "{",
-    DictionaryElement,
-    { ",", DictionaryElement },
-    "}", ";";
+‒ Z = <DictionaryDeclaration>
 
-DictionaryElement =
-    "{", Number, ",", String, "}";
+‒ V_T = {a, b, ..., z, A, B, ..., Z, 0, 1, ..., 9, <, >, ,, =, {, }, ;, ", _, пробел, ., :, !, ?, -, +}
 
-DictionaryIdentifier =
-    letter, { letter | digit | "_" };
-
-Number =
-    digit, { digit };
-
-String =
-    "\"", { symbol }, "\"";
-
-letter =
-    "A" | "B" | ... | "Z" | "a" | "b" | ... | "z";
-
-digit =
-    "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-
-symbol =
-    letter | digit | "_" | " " | "." | "," | ":" | ";" | "!" | "?" | "-" | "+";
-
----
+‒ V_N = {<DictionaryDeclaration>, <DictionaryElementTail>, <DictionaryElement>, <DictionaryIdentifier>, <DictionaryIdentifierTail>, <Number>, <NumberTail>, <String>, <StringBody>}
 
 ## Классификация грамматики по Хомскому
 
-Разработанная грамматика относится к типу 2 по классификации Хомского, то есть является контекстно-свободной.
+Согласно классификации Хомского, полученная порождающая грамматика соответствует типу контекстно-свободных грамматик, так как в левой части каждой продукции находится один нетерминальный символ, а правая часть представляет собой цепочку терминальных и нетерминальных символов.
 
-Контекстно-свободная грамматика задаётся правилами вида:
+A → α, A ∈ V_N, α ∈ V*
 
-A → α
+где V = V_T ∪ V_N.
 
-где:
-- A ∈ V_N — нетерминал  
-- α ∈ (V_T ∪ V_N)* — последовательность терминалов и/или нетерминалов  
+Грамматика не является автоматной, так как не все её продукции имеют вид:
 
-Формально:
+A → aB | a | ε
 
-G[A]: A → α, A ∈ V_N, α ∈ (V_T ∪ V_N)*
+В грамматике присутствуют правила, содержащие последовательности из нескольких терминалов и нетерминалов, например:
 
-В разработанной грамматике в левой части каждого правила находится ровно один нетерминал, например:
+<DictionaryElement> → { <Number> , <String> }
 
-DictionaryElement → "{" Number "," String "}"  
-Number → digit {digit}  
-String → "\"" {symbol} "\""
+<DictionaryDeclaration> → Dictionary < int , string > <DictionaryIdentifier> = new Dictionary < int , string > { <DictionaryElement> <DictionaryElementTail> } ;
 
-Следовательно:
-
-G ∈ Type 2
-
+Следовательно, грамматика относится к типу 2 по классификации Хомского.
 ---
+## 4 Метод анализа
+
+Так как грамматика G[<DictionaryDeclaration>] принадлежит классу контекстно-свободных, анализ реализован методом рекурсивного спуска.
+
+Идея метода заключается в том, что каждому нетерминалу ставится в соответствие программная функция, которая распознаёт цепочку, порождённую этим нетерминалом.
+
+Функции вызываются в соответствии с правилами грамматики и при необходимости вызывают сами себя. Поэтому для реализации выбран язык C#, обладающий рекурсивными возможностями.
 
 ## Схема рекурсивного спуска
 
 Синтаксический анализ реализован методом рекурсивного спуска. Каждому нетерминалу соответствует отдельная процедура.
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/e60ff61a-1056-4d7e-89a8-787a27c1dc0a" />
+<img width="1280" height="1050" alt="image" src="https://github.com/user-attachments/assets/e1012592-f24f-4cb0-9f71-9da8c5f89230" />
+
  
 
 ---
