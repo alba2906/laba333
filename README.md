@@ -58,13 +58,13 @@ Dictionary<int, string> My_dict1 = new Dictionary<int, string> {
 ‒ symbol -> letter | digit | _ | пробел | . | , | : | ; | ! | ? | - | +
 ```
 Следуя введённому формальному определению грамматики, представим её составляющими:
-
+```text
 ‒ Z = <DictionaryDeclaration>
 
 ‒ V_T = {a, b, ..., z, A, B, ..., Z, 0, 1, ..., 9, <, >, ,, =, {, }, ;, ", _, пробел, ., :, !, ?, -, +}
 
 ‒ V_N = {<DictionaryDeclaration>, <DictionaryElementTail>, <DictionaryElement>, <DictionaryIdentifier>, <DictionaryIdentifierTail>, <Number>, <NumberTail>, <String>, <StringBody>}
-
+```
 ## Классификация грамматики по Хомскому
 
 Согласно классификации Хомского, полученная порождающая грамматика соответствует типу контекстно-свободных грамматик, так как в левой части каждой продукции находится один нетерминальный символ, а правая часть представляет собой цепочку терминальных и нетерминальных символов.
