@@ -258,12 +258,6 @@ Dictionary<int, string> dict = new Dictionary<int, string>{ {,"one"}; {2,two} };
 <img width="881" height="639" alt="image" src="https://github.com/user-attachments/assets/52307951-fb25-4e61-ad4c-c8797b0a9ae3" />
 
 
-### Без первого ключевого слова
-```csharp
-int dict = new Dictionary<int, string>{ {1,"one"} };
-```
-**Результат:**
-<img width="874" height="636" alt="image" src="https://github.com/user-attachments/assets/473d2bbe-3a36-49db-8140-175cacb9d602" />
 
 
 ## Инструкция по сборке и запуску
